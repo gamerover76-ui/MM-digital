@@ -1,29 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SimpleTech Mod 1.12.2</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#111; color:#eee; text-align:center; padding:40px; }
-    .card { max-width: 680px; margin: 0 auto; background:#1b1b1b; border:1px solid #333; border-radius:12px; padding:24px; }
-    h1 { margin: 0 0 10px; }
-    p { line-height: 1.5; }
-    a.btn { display:inline-block; background:#2ecc71; color:#111; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:bold; margin-top:14px; }
-    code { background:#000; padding:2px 6px; border-radius:6px; }
-    .small { color:#aaa; font-size: 13px; margin-top: 18px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MM Digital — Livro Virtual</title>
+<style>
+:root {--bg:#edf2f7;--ink:#111827;--line:#111;--soft:#f8fafc;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+.topbar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:2px solid #111;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px}.logo{border:3px solid #111;border-radius:12px;padding:8px 10px;box-shadow:4px 4px 0 #111;background:white}.sub{display:block;font-size:12px;color:#555;font-weight:700}
+button{font:inherit;cursor:pointer}.btn{border:2px solid #111;background:#111;color:#fff;border-radius:12px;padding:10px 14px;font-weight:800}.btn.secondary{background:#fff;color:#111}
+.app{display:grid;grid-template-columns:270px 1fr;gap:18px;max-width:1280px;margin:0 auto;padding:18px}
+.sidebar{background:#fff;border:2px solid #111;border-radius:18px;padding:14px;position:sticky;top:86px;max-height:calc(100vh - 100px);overflow:auto}
+.sidebar h3{margin:12px 0 8px}.nav-btn{width:100%;text-align:left;margin:4px 0;padding:10px;border:1.5px solid #111;background:#fff;border-radius:10px;font-weight:700}.nav-btn.active{background:#111;color:#fff}
+.book-page{display:none}.book-page.active{display:block}.sheet{background:#fff;border:3px solid #111;border-radius:10px;max-width:900px;margin:0 auto 20px;padding:28px;box-shadow:0 12px 30px rgba(0,0,0,.12);position:relative}
+.sheet:before{content:"";position:absolute;inset:12px;border:1px dashed #111;border-radius:8px;pointer-events:none;opacity:.35}
+.sheet>*{position:relative;z-index:1}.sheet-head{text-align:center;border-bottom:2px solid #111;margin-bottom:18px;padding-bottom:16px}.sheet-head span{display:inline-block;border:1.5px solid #111;border-radius:999px;padding:7px 15px;font-weight:800;margin-bottom:10px}.sheet-head h2{font-size:38px;line-height:1.05;margin:8px 0 0}
+section{border:2px solid #111;border-radius:18px;padding:16px;margin:16px 0;background:#fff}h3{margin:0 0 12px;font-size:24px}p{line-height:1.5;font-size:16px}.grid{display:grid;gap:12px}.two{grid-template-columns:repeat(2,1fr)}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}.five{grid-template-columns:repeat(5,1fr)}
+.example,.task{border:1.8px solid #111;border-radius:14px;padding:14px;background:#fff}pre{font-family:'Courier New',monospace;font-size:24px;font-weight:900;white-space:pre-wrap;line-height:1.25;margin:12px 0;text-align:center}.task{min-height:220px;display:flex;flex-direction:column;gap:8px}.task>b{font-size:16px}
+.field-label{font-weight:800;margin-top:8px;display:block}textarea{width:100%;min-height:100px;border:1.7px dashed #111;border-radius:12px;padding:10px;resize:vertical;font:16px Arial;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent,transparent 24px,#e5e7eb 25px),repeating-linear-gradient(90deg,transparent,transparent 24px,#e5e7eb 25px);background-blend-mode:normal}input{border:1.8px solid #111;border-radius:10px;padding:9px;font:16px Arial}.answer-line{display:flex;align-items:center;gap:8px;margin-top:8px;font-weight:800}.answer-line input{flex:1}.page-footer{text-align:center;font-weight:900;margin-top:18px}
+.check-table{width:100%;border-collapse:collapse}.check-table th,.check-table td{border:1.5px solid #111;padding:10px;text-align:left}.check-table input{width:22px;height:22px}
+.notice{background:#fff7ed;border:2px solid #f59e0b;border-radius:14px;padding:12px;margin-bottom:12px;font-weight:700}
+@media(max-width:950px){.app{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.two,.three,.four,.five{grid-template-columns:1fr}.sheet{padding:18px}.sheet-head h2{font-size:30px}}
+@media print{.topbar,.sidebar,.notice{display:none}body{background:#fff}.app{display:block;padding:0}.book-page{display:block;page-break-after:always}.book-page:not(.active){display:none}.sheet{box-shadow:none;border-radius:0;max-width:none;min-height:100vh}}
+</style>
 </head>
 <body>
-  <div class="card">
-    <h1>SimpleTech (Minecraft 1.12.2)</h1>
-    <p>Adiciona <b>Celular</b>, <b>Tablet</b>, <b>Computador</b>, <b>Tomada</b> e <b>Carregador</b>.</p>
-    <p><b>Como usar:</b> pluge o carregador na tomada e fique até 6 blocos. Abra o celular/tablet e clique em <b>Carregar</b>.</p>
+<header class="topbar"><div class="brand"><div class="logo">MM</div><div>MM Digital<span class="sub">Livro virtual com respostas digitáveis</span></div></div><div><button class="btn secondary" id="printBtn">Imprimir página</button> <button class="btn" id="exportBtn">Exportar respostas</button></div></header>
+<div class="app">
+<aside class="sidebar"><div class="notice">Versão corrigida: arquivo único, com Unidade 1 e Unidade 2. Isso evita a tela branca quando algum arquivo separado não carrega.</div><h3>Unidade 1</h3><button class="nav-btn" data-open="1">Página 1</button><button class="nav-btn" data-open="2">Página 2</button><button class="nav-btn" data-open="3">Página 3</button><button class="nav-btn" data-open="4">Página 4</button><button class="nav-btn" data-open="5">Página 5</button><button class="nav-btn" data-open="6">Página 6</button><button class="nav-btn" data-open="7">Página 7</button><button class="nav-btn" data-open="8">Página 8</button><button class="nav-btn" data-open="9">Página 9</button><button class="nav-btn" data-open="10">Página 10</button><button class="nav-btn" data-open="11">Página 11</button><button class="nav-btn" data-open="12">Página 12</button><h3>Unidade 2</h3><button class="nav-btn" data-open="13">Página 13</button><button class="nav-btn" data-open="14">Página 14</button><button class="nav-btn" data-open="15">Página 15</button><button class="nav-btn" data-open="16">Página 16</button><button class="nav-btn" data-open="17">Página 17</button></aside>
+<main><article class="book-page active" id="pagina-1" data-page="1" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 1 — O que você já aprendeu?</h2></div>
+        
+<section><h3>1. Converse com a Matemática</h3><p>Antes de começar, resolva algumas situações para lembrar o que você já sabe.</p></section>
+<div class="grid two"><div class="task"><b>a) 28 + 37 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p1-1-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p1-1-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 94 - 58 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p1-2-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p1-2-resp" placeholder="Digite a resposta" /></label></div></div>
+<div class="grid two"><div class="task"><b>c) 6 × 7 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p1-3-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p1-3-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) 48 ÷ 6 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p1-4-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p1-4-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>2. Problema</h3><p>Uma turma tinha 32 alunos. Chegaram mais 8 alunos para uma atividade. Quantos alunos ficaram ao todo?</p><label class="field-label">Área de cálculo</label><textarea data-key="p1-prob-calc" rows="5" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p1-prob-resp" placeholder="Digite a resposta" /></label></section>
 
-    <!-- Coloque o .jar aqui na mesma pasta e renomeie para SimpleTech-1.12.2.jar -->
-    <a class="btn" href="SimpleTech-1.12.2.jar" download>Baixar Mod (.jar)</a>
+        <div class="page-footer">Página 1</div>
+      </div>
+    </article><article class="book-page " id="pagina-2" data-page="2" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 2 — Por dentro da Matemática: multiplicação</h2></div>
+        
+<section><h3>Multiplicar é juntar grupos iguais</h3><p>Quando temos vários grupos com a mesma quantidade, podemos usar a multiplicação.</p><div class="example">4 grupos com 6 objetos: <b>4 × 6 = 24</b></div></section>
+<div class="grid three"><div class="task"><b>a) 5 × 4 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p2-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p2-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 7 × 3 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p2-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p2-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 8 × 6 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p2-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p2-c-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Agora é com você</h3><p>Uma caixa tem 9 lápis. Quantos lápis há em 5 caixas?</p><label class="field-label">Área de cálculo</label><textarea data-key="p2-prob" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p2-prob-resp" placeholder="Digite a resposta" /></label></section>
 
-    <p class="small">Dica: você pode hospedar esta página no GitHub Pages ou só abrir o <code>index.html</code> no navegador.</p>
-  </div>
+        <div class="page-footer">Página 2</div>
+      </div>
+    </article><article class="book-page " id="pagina-3" data-page="3" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 3 — Multiplicação em contexto: a construtora</h2></div>
+        
+<section><h3>A construtora</h3><p>Uma construtora organizou tijolos em fileiras iguais. Cada fileira tem 8 tijolos.</p></section>
+<div class="grid two"><div class="task"><b>a) 6 fileiras de 8 tijolos</b><label class="field-label">Área de cálculo</label><textarea data-key="p3-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p3-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 9 fileiras de 8 tijolos</b><label class="field-label">Área de cálculo</label><textarea data-key="p3-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p3-b-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Problema maior</h3><p>Em um prédio, há 7 andares com 4 apartamentos em cada andar. Quantos apartamentos há ao todo?</p><label class="field-label">Área de cálculo</label><textarea data-key="p3-prob" rows="7" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p3-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 3</div>
+      </div>
+    </article><article class="book-page " id="pagina-4" data-page="4" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 4 — Por dentro da Matemática: divisão</h2></div>
+        
+<section><h3>Dividir é repartir igualmente</h3><p>Usamos a divisão quando queremos separar uma quantidade em partes iguais.</p><div class="example">24 balas para 6 crianças: <b>24 ÷ 6 = 4</b></div></section>
+<div class="grid three"><div class="task"><b>a) 36 ÷ 6 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p4-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p4-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 45 ÷ 5 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p4-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p4-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 56 ÷ 7 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p4-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p4-c-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Agora é com você</h3><p>Uma professora tem 42 folhas para dividir igualmente entre 6 grupos. Quantas folhas cada grupo recebe?</p><label class="field-label">Área de cálculo</label><textarea data-key="p4-prob" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p4-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 4</div>
+      </div>
+    </article><article class="book-page " id="pagina-5" data-page="5" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 5 — Divisão em contexto: a excursão da escola</h2></div>
+        
+<section><h3>A excursão</h3><p>Para uma excursão, 72 alunos serão divididos igualmente em 8 vans.</p><label class="field-label">Área de cálculo</label><textarea data-key="p5-a" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p5-a-resp" placeholder="Digite a resposta" /></label></section>
+<div class="grid two"><div class="task"><b>b) 63 alunos em 7 grupos</b><label class="field-label">Área de cálculo</label><textarea data-key="p5-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p5-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 80 alunos em 10 grupos</b><label class="field-label">Área de cálculo</label><textarea data-key="p5-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p5-c-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Explique</h3><p>Como você percebe que uma divisão está repartindo igualmente?</p><label class="field-label">Sua explicação</label><textarea data-key="p5-explique" rows="5" placeholder="Digite aqui..."></textarea></section>
+
+        <div class="page-footer">Página 5</div>
+      </div>
+    </article><article class="book-page " id="pagina-6" data-page="6" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 6 — Por dentro da Matemática: operações reversas</h2></div>
+        
+<section><h3>Operações que se desfazem</h3><p>Adição e subtração são operações reversas. Multiplicação e divisão também são operações reversas.</p><div class="example">35 + 12 = 47, então 47 - 12 = 35.<br>6 × 8 = 48, então 48 ÷ 8 = 6.</div></section>
+<div class="grid two"><div class="task"><b>a) 29 + 18 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p6-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p6-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) Use a operação reversa para conferir</b><label class="field-label">Área de cálculo</label><textarea data-key="p6-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p6-b-resp" placeholder="Digite a resposta" /></label></div></div>
+<div class="grid two"><div class="task"><b>c) 7 × 9 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p6-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p6-c-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) Use a operação reversa para conferir</b><label class="field-label">Área de cálculo</label><textarea data-key="p6-d-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p6-d-resp" placeholder="Digite a resposta" /></label></div></div>
+
+        <div class="page-footer">Página 6</div>
+      </div>
+    </article><article class="book-page " id="pagina-7" data-page="7" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 7 — Operações reversas em contexto: a cantina</h2></div>
+        
+<section><h3>A cantina</h3><p>A cantina vendeu 36 sucos pela manhã e depois recebeu mais 24 sucos.</p><label class="field-label">Área de cálculo</label><textarea data-key="p7-a" rows="5" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p7-a-resp" placeholder="Digite a resposta" /></label></section>
+<section><h3>Conferindo</h3><p>Use uma operação reversa para conferir sua resposta.</p><label class="field-label">Área de conferência</label><textarea data-key="p7-b" rows="5" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p7-b-resp" placeholder="Digite a resposta" /></label></section>
+<section><h3>Outro caso</h3><p>Foram organizados 8 pacotes com 6 salgados em cada pacote. Quantos salgados havia? Qual divisão confere o resultado?</p><label class="field-label">Área de cálculo</label><textarea data-key="p7-c" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p7-c-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 7</div>
+      </div>
+    </article><article class="book-page " id="pagina-8" data-page="8" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 8 — Por dentro da Matemática: arredondamento</h2></div>
+        
+<section><h3>Arredondar ajuda a estimar</h3><p>Arredondamos um número para chegar a um valor aproximado mais fácil de usar.</p><div class="example">39 fica próximo de 40. 145 fica próximo de 100 ou 150, dependendo do pedido.</div></section>
+<div class="grid two"><div class="task"><b>a) Arredonde 38 para a dezena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p8-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p8-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) Arredonde 145 para a centena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p8-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p8-b-resp" placeholder="Digite a resposta" /></label></div></div>
+<div class="grid two"><div class="task"><b>c) Arredonde 267 para a dezena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p8-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p8-c-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) Arredonde 812 para a centena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p8-d-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p8-d-resp" placeholder="Digite a resposta" /></label></div></div>
+
+        <div class="page-footer">Página 8</div>
+      </div>
+    </article><article class="book-page " id="pagina-9" data-page="9" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 9 — Arredondamento em contexto: a biblioteca</h2></div>
+        
+<section><h3>A biblioteca</h3><p>A biblioteca tem 248 livros de aventura e 135 livros de ciência.</p></section>
+<div class="grid two"><div class="task"><b>a) Arredonde 248 para a centena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p9-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p9-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) Arredonde 135 para a centena mais próxima</b><label class="field-label">Área de cálculo</label><textarea data-key="p9-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p9-b-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Estimativa</h3><p>Usando os arredondamentos, estime quantos livros há ao todo.</p><label class="field-label">Área de cálculo</label><textarea data-key="p9-c" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p9-c-resp" placeholder="Digite a resposta" /></label></section>
+<section><h3>Compare</h3><p>Agora calcule o total exato e compare com a estimativa.</p><label class="field-label">Área de cálculo</label><textarea data-key="p9-d" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p9-d-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 9</div>
+      </div>
+    </article><article class="book-page " id="pagina-10" data-page="10" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 10 — Por dentro da Matemática: ciclos</h2></div>
+        
+<section><h3>O que é um ciclo?</h3><p>Um ciclo é uma sequência que se repete sempre na mesma ordem.</p><div class="example">vermelho → azul → verde → vermelho → azul → verde...</div></section>
+<section><h3>Agora é com você</h3><p>Complete o ciclo: organizar livros → apagar o quadro → distribuir materiais.</p><label class="field-label">Área de cálculo</label><textarea data-key="p10-a" rows="7" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p10-a-resp" placeholder="Digite a resposta" /></label></section>
+<div class="grid two"><div class="task"><b>b) Qual será a função do 10º dia?</b><label class="field-label">Área de cálculo</label><textarea data-key="p10-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p10-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) Qual será a função do 12º dia?</b><label class="field-label">Área de cálculo</label><textarea data-key="p10-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p10-c-resp" placeholder="Digite a resposta" /></label></div></div>
+
+        <div class="page-footer">Página 10</div>
+      </div>
+    </article><article class="book-page " id="pagina-11" data-page="11" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 11 — Problemas mistos: a loja de brinquedos</h2></div>
+        
+<section><h3>Loja Mundo dos Brinquedos</h3><p>Chegaram 9 caixas de carrinhos com 8 carrinhos em cada caixa, 7 caixas de bonecas com 6 bonecas em cada caixa e 5 caixas de bolas com 10 bolas em cada caixa. Depois, foram vendidos 25 brinquedos.</p></section>
+<div class="grid two"><div class="task"><b>a) Quantos carrinhos chegaram?</b><label class="field-label">Área de cálculo</label><textarea data-key="p11-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p11-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) Quantas bonecas chegaram?</b><label class="field-label">Área de cálculo</label><textarea data-key="p11-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p11-b-resp" placeholder="Digite a resposta" /></label></div></div>
+<div class="grid two"><div class="task"><b>c) Quantas bolas chegaram?</b><label class="field-label">Área de cálculo</label><textarea data-key="p11-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p11-c-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) Quantos brinquedos chegaram ao todo?</b><label class="field-label">Área de cálculo</label><textarea data-key="p11-d-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p11-d-resp" placeholder="Digite a resposta" /></label></div></div>
+<section><h3>Depois da venda</h3><label class="field-label">Área de cálculo</label><textarea data-key="p11-e" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p11-e-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 11</div>
+      </div>
+    </article><article class="book-page " id="pagina-12" data-page="12" data-unit="1">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 1 — Operações e situações do dia a dia</span><h2>Página 12 — O que eu aprendi nesta unidade?</h2></div>
+        
+<section><h3>Marque um X</h3><table class="check-table"><tr><th>Frase</th><th>Sim</th><th>Ainda preciso praticar</th></tr><tr><td>1. Eu sei usar multiplicação para grupos iguais.</td><td><input type="checkbox" data-key="p12-c0-sim"></td><td><input type="checkbox" data-key="p12-c0-prat"></td></tr><tr><td>2. Eu sei usar divisão para repartir quantidades.</td><td><input type="checkbox" data-key="p12-c1-sim"></td><td><input type="checkbox" data-key="p12-c1-prat"></td></tr><tr><td>3. Eu entendi operações reversas.</td><td><input type="checkbox" data-key="p12-c2-sim"></td><td><input type="checkbox" data-key="p12-c2-prat"></td></tr><tr><td>4. Eu sei arredondar números.</td><td><input type="checkbox" data-key="p12-c3-sim"></td><td><input type="checkbox" data-key="p12-c3-prat"></td></tr><tr><td>5. Eu sei identificar ciclos.</td><td><input type="checkbox" data-key="p12-c4-sim"></td><td><input type="checkbox" data-key="p12-c4-prat"></td></tr></table></section>
+<section><h3>Revisão final</h3><div class="grid three"><div class="task"><b>a) 8 × 7</b><label class="field-label">Área de cálculo</label><textarea data-key="p12-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p12-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 72 ÷ 8</b><label class="field-label">Área de cálculo</label><textarea data-key="p12-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p12-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 39 arredondado</b><label class="field-label">Área de cálculo</label><textarea data-key="p12-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p12-c-resp" placeholder="Digite a resposta" /></label></div></div></section>
+<section><h3>Desafio final</h3><p>Uma escola vendeu 45 fatias de bolo pela manhã e 38 à tarde. Cada fatia custou R$ 5,00. Quanto arrecadou com os bolos?</p><label class="field-label">Área de cálculo</label><textarea data-key="p12-desafio" rows="7" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p12-desafio-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 12</div>
+      </div>
+    </article><article class="book-page " id="pagina-13" data-page="13" data-unit="2">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 2 — Algoritmos das operações</span><h2>Página 13 — Adição e subtração</h2></div>
+        
+<section><h3>1. Por dentro da Matemática</h3><p>Na adição e na subtração vertical, as unidades ficam embaixo das unidades, as dezenas embaixo das dezenas e as centenas embaixo das centenas.</p><div class="grid two"><div class="example"><b>Exemplo de adição</b><pre> C  D  U
+ 2  4  8
++1  3  5
+────────
+ 3  8  3</pre></div><div class="example"><b>Exemplo de subtração</b><pre> D   U
+ 6  12
+ 7   2
+-3   8
+──────
+ 3   4</pre><p>Trocamos 1 dezena por 10 unidades.</p></div></div></section>
+<section><h3>2. Agora é com você</h3><div class="grid four"><div class="task"><b>a) 246 + 132 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p13-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p13-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 357 + 218 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p13-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p13-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 83 - 47 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p13-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p13-c-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) 125 - 68 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p13-d-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p13-d-resp" placeholder="Digite a resposta" /></label></div></div></section>
+<section><h3>3. Problema</h3><p>Uma biblioteca recebeu 248 livros em março e 135 livros em abril. Quantos livros recebeu ao todo?</p><label class="field-label">Área de cálculo</label><textarea data-key="p13-prob" rows="8" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p13-prob-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 13</div>
+      </div>
+    </article><article class="book-page " id="pagina-14" data-page="14" data-unit="2">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 2 — Algoritmos das operações</span><h2>Página 14 — Multiplicação armada</h2></div>
+        
+<section><h3>1. Por dentro da Matemática</h3><p>Na multiplicação por um algarismo, começamos pelas unidades, da direita para a esquerda.</p><div class="grid two"><div class="example"><b>Exemplo 1</b><pre>23
+×4
+──
+92</pre><p>① 4 × 3 = 12. Colocamos 2 e vai 1.<br>② 4 × 2 = 8. Mais 1 = 9.</p></div><div class="example"><b>Exemplo 2</b><pre>36
+×5
+──
+180</pre><p>① 5 × 6 = 30. Colocamos 0 e vai 3.<br>② 5 × 3 = 15. Mais 3 = 18.</p></div></div></section>
+<section><h3>2. Agora é com você</h3><div class="grid three"><div class="task"><b>a) 24 × 3 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p14-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p14-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 47 × 2 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p14-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p14-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 58 × 4 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p14-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p14-c-resp" placeholder="Digite a resposta" /></label></div></div></section>
+<section><h3>3. Problema</h3><p>Uma papelaria recebeu 7 caixas com 24 lápis em cada caixa. Quantos lápis chegaram ao todo?</p><label class="field-label">Área de cálculo</label><textarea data-key="p14-prob" rows="8" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p14-prob-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 14</div>
+      </div>
+    </article><article class="book-page " id="pagina-15" data-page="15" data-unit="2">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 2 — Algoritmos das operações</span><h2>Página 15 — Divisão</h2></div>
+        
+<section><h3>1. Dois jeitos de dividir</h3><p>Podemos dividir por decomposição ou pelo algoritmo da chave.</p><div class="grid two"><div class="example"><b>Jeito 1 — Decomposição</b><pre>84 ÷ 6
+84 = 60 + 24
+60 ÷ 6 = 10
+24 ÷ 6 = 4
+10 + 4 = 14</pre><p><b>Logo, 84 ÷ 6 = 14.</b></p></div><div class="example"><b>Jeito 2 — Algoritmo da chave</b><pre>84 │ 6
+-6 │ 14
+──
+24
+-24
+──
+00</pre><p>① O 6 cabe 1 vez no 8.<br>② Subtraímos 6.<br>③ Abaixamos o 4 e formamos 24.<br>④ O 6 cabe 4 vezes no 24.</p></div></div><div class="example"><b>Divisão com resto</b><br>85 ÷ 6 = 14 e sobra 1. O número que sobra é chamado de resto.</div></section>
+<section><h3>2. Agora é com você</h3><div class="grid three"><div class="task"><b>a) 96 ÷ 8</b><label class="field-label">Área de cálculo</label><textarea data-key="p15-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p15-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 75 ÷ 5</b><label class="field-label">Área de cálculo</label><textarea data-key="p15-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p15-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 85 ÷ 6</b><label class="field-label">Área de cálculo</label><textarea data-key="p15-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p15-c-resp" placeholder="Digite a resposta" /></label></div></div></section>
+
+        <div class="page-footer">Página 15</div>
+      </div>
+    </article><article class="book-page " id="pagina-16" data-page="16" data-unit="2">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 2 — Algoritmos das operações</span><h2>Página 16 — Praticando os algoritmos</h2></div>
+        
+<section><h3>1. Resolva</h3><div class="grid four"><div class="task"><b>a) 248 + 136 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p16-a-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-a-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 302 - 147 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p16-b-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-b-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 34 × 6 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p16-c-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-c-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) 96 ÷ 8 =</b><label class="field-label">Área de cálculo</label><textarea data-key="p16-d-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-d-resp" placeholder="Digite a resposta" /></label></div></div></section>
+<section><h3>2. Problemas do dia a dia</h3><p>a) Em uma feira, foram vendidos 156 sucos pela manhã e 129 à tarde. Quantos sucos foram vendidos ao todo?</p><label class="field-label">Área de cálculo</label><textarea data-key="p16-pa" rows="5" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-pa-resp" placeholder="Digite a resposta" /></label><p>b) Uma professora tem 84 lápis e quer dividir igualmente entre 6 grupos. Quantos lápis cada grupo receberá?</p><label class="field-label">Área de cálculo</label><textarea data-key="p16-pb" rows="5" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-pb-resp" placeholder="Digite a resposta" /></label></section>
+<section><h3>3. Desafio</h3><p>Uma loja recebeu 5 caixas com 18 cadernos em cada caixa. Depois, vendeu 27 cadernos. Quantos cadernos sobraram?</p><label class="field-label">Área de cálculo</label><textarea data-key="p16-desafio" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p16-desafio-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 16</div>
+      </div>
+    </article><article class="book-page " id="pagina-17" data-page="17" data-unit="2">
+      <div class="sheet">
+        <div class="sheet-head"><span>Unidade 2 — Algoritmos das operações</span><h2>Página 17 — Revisão final</h2></div>
+        
+<section><h3>1. Marque um X</h3><p>Leia cada frase e marque como está o seu aprendizado.</p><table class="check-table"><tr><th>Frase</th><th>( ) Sim</th><th>( ) Ainda preciso praticar</th></tr><tr><td>1. Eu sei armar contas de adição e subtração.</td><td><input type="checkbox" data-key="p17-c0-sim"></td><td><input type="checkbox" data-key="p17-c0-prat"></td></tr><tr><td>2. Eu sei resolver multiplicação armada.</td><td><input type="checkbox" data-key="p17-c1-sim"></td><td><input type="checkbox" data-key="p17-c1-prat"></td></tr><tr><td>3. Eu sei dividir por decomposição.</td><td><input type="checkbox" data-key="p17-c2-sim"></td><td><input type="checkbox" data-key="p17-c2-prat"></td></tr><tr><td>4. Eu sei dividir usando o algoritmo da chave.</td><td><input type="checkbox" data-key="p17-c3-sim"></td><td><input type="checkbox" data-key="p17-c3-prat"></td></tr></table></section>
+<section><h3>2. Revisão</h3><div class="grid five"><div class="task"><b>a) 248 + 135</b><label class="field-label">Área de cálculo</label><textarea data-key="p17-r0-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-r0-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>b) 125 - 48</b><label class="field-label">Área de cálculo</label><textarea data-key="p17-r1-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-r1-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>c) 36 × 5</b><label class="field-label">Área de cálculo</label><textarea data-key="p17-r2-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-r2-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>d) 84 ÷ 6</b><label class="field-label">Área de cálculo</label><textarea data-key="p17-r3-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-r3-resp" placeholder="Digite a resposta" /></label></div><div class="task"><b>e) 85 ÷ 6</b><label class="field-label">Área de cálculo</label><textarea data-key="p17-r4-calc" rows="6" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-r4-resp" placeholder="Digite a resposta" /></label></div></div></section>
+<section><h3>3. Desafio final</h3><p>Uma escola organizou uma feira. Foram vendidas 45 fatias de bolo pela manhã e 38 à tarde. Também havia 6 caixas de suco, com 12 sucos em cada caixa. Cada fatia de bolo custou R$ 5,00 e cada suco custou R$ 4,00. Quanto foi arrecadado no total?</p><label class="field-label">Área de cálculo</label><textarea data-key="p17-desafio" rows="8" placeholder="Digite aqui..."></textarea><label class="answer-line"><span>Resposta:</span><input data-key="p17-desafio-resp" placeholder="Digite a resposta" /></label></section>
+
+        <div class="page-footer">Página 17</div>
+      </div>
+    </article></main>
+</div>
+<script>
+(function(){
+  function $(sel,root){return (root||document).querySelector(sel)}
+  function $$(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel))}
+  function openPage(n){
+    $$('.book-page').forEach(function(p){p.classList.toggle('active', p.dataset.page == n)});
+    $$('.nav-btn').forEach(function(b){b.classList.toggle('active', b.dataset.open == n)});
+    localStorage.setItem('mm_page', n);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function saveInput(el){
+    if(!el.dataset.key) return;
+    localStorage.setItem('mm_'+el.dataset.key, el.type==='checkbox' ? (el.checked?'1':'0') : el.value);
+  }
+  function loadInput(el){
+    if(!el.dataset.key) return;
+    var v=localStorage.getItem('mm_'+el.dataset.key);
+    if(v===null) return;
+    if(el.type==='checkbox') el.checked = v==='1'; else el.value=v;
+  }
+  $$('.nav-btn').forEach(function(b){b.addEventListener('click',function(){openPage(b.dataset.open)})});
+  $$('[data-key]').forEach(function(el){loadInput(el); el.addEventListener('input',function(){saveInput(el)}); el.addEventListener('change',function(){saveInput(el)});});
+  $('#printBtn').addEventListener('click',function(){window.print()});
+  $('#exportBtn').addEventListener('click',function(){
+    var lines=['MM Digital — respostas salvas',''];
+    $$('[data-key]').forEach(function(el){lines.push(el.dataset.key+': '+(el.type==='checkbox'?(el.checked?'marcado':'não marcado'):el.value));});
+    var blob=new Blob([lines.join('
+')],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='respostas-mm-digital.txt'; a.click(); URL.revokeObjectURL(a.href);
+  });
+  openPage(localStorage.getItem('mm_page') || 1);
+})();
+</script>
 </body>
 </html>
